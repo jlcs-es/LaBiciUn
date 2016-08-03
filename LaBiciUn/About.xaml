@@ -30,24 +30,30 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Row="0" Grid.Column="0" x:Name="image" Height="200" Width="200" Margin="5" Source="Assets/logo-muybici.jpg"/>
-                <Image Grid.Row="0" Grid.Column="1" x:Name="image1" Height="200" Width="200" Margin="5" Source="Assets/logo-ponferrada.jpg"/>
-                <Image Grid.Row="1" Grid.Column="0" x:Name="image2" Height="200" Width="200" Margin="5" Source="Assets/logo-bicidorm.jpg"/>
-                <Image Grid.Row="1" Grid.Column="1" x:Name="image3" Height="200" Width="200" Margin="5" Source="Assets/logo-bicialtea.jpg"/>
-                <Image Grid.Row="2" Grid.Column="0" x:Name="image4" Height="200" Width="200" Margin="5" Source="Assets/logo-majadahonda.jpg"/>
-                <Image Grid.Row="2" Grid.Column="1" x:Name="image5" Height="200" Width="200" Margin="5" Source="Assets/logo-saforbici.jpg"/>
-                <Image Grid.Row="3" Grid.Column="0" x:Name="image6" Height="200" Width="200" Margin="5" Source="Assets/logo-gbici.jpg"/>
-                <Image Grid.Row="3" Grid.Column="1" x:Name="image7" Height="200" Width="200" Margin="5" Source="Assets/logo-vaibike.jpg"/>
+                <Image Grid.Row="0" Grid.Column="0" x:Name="image" Height="175" Width="175" Margin="5" Source="Assets/logo-muybici.jpg"/>
+                <Image Grid.Row="0" Grid.Column="1" x:Name="image1" Height="175" Width="175" Margin="5" Source="Assets/logo-ponferrada.jpg"/>
+                <Image Grid.Row="1" Grid.Column="0" x:Name="image2" Height="175" Width="175" Margin="5" Source="Assets/logo-bicidorm.jpg"/>
+                <Image Grid.Row="1" Grid.Column="1" x:Name="image3" Height="175" Width="175" Margin="5" Source="Assets/logo-bicialtea.jpg"/>
+                <Image Grid.Row="2" Grid.Column="0" x:Name="image4" Height="175" Width="175" Margin="5" Source="Assets/logo-majadahonda.jpg"/>
+                <Image Grid.Row="2" Grid.Column="1" x:Name="image5" Height="175" Width="175" Margin="5" Source="Assets/logo-saforbici.jpg"/>
+                <Image Grid.Row="3" Grid.Column="0" x:Name="image6" Height="175" Width="175" Margin="5" Source="Assets/logo-gbici.jpg"/>
+                <Image Grid.Row="3" Grid.Column="1" x:Name="image7" Height="175" Width="175" Margin="5" Source="Assets/logo-vaibike.jpg"/>
             </Grid>
-            <HyperlinkButton Grid.Row="3" HorizontalAlignment="Center" Content="Desarrollador: José Luis Cánovas Sánchez" VerticalAlignment="Center" FontSize="22" Foreground="Black" NavigateUri="https://es.linkedin.com/in/joseluiscanovassanchez"/>
+            <HyperlinkButton Grid.Row="3" HorizontalAlignment="Center" Content="Desarrollador: José Luis Cánovas Sánchez" VerticalAlignment="Center" Foreground="Black" NavigateUri="https://es.linkedin.com/in/joseluiscanovassanchez"/>
 
-            <StackPanel Grid.Row="4"  Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock VerticalAlignment="Center">Logo diseñado por </TextBlock>
-                <HyperlinkButton Margin="5" NavigateUri="http://www.flaticon.es/autores/eucalyp" Content="Eucalyp"/>
-                <TextBlock VerticalAlignment="Center"> desde </TextBlock>
-                <HyperlinkButton Margin="5" NavigateUri="http://www.flaticon.com" Content="www.flaticon.com"/>
-                <TextBlock VerticalAlignment="Center"> con licencia </TextBlock>
-                <HyperlinkButton Margin="5" NavigateUri="http://creativecommons.org/licenses/by/3.0/" Content="Creative Commons BY 3.0"/>
+            <StackPanel Grid.Row="4"  Orientation="Vertical" Margin="0,15,0,0" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center">Logo diseñado por </TextBlock>
+                    <HyperlinkButton Margin="5" NavigateUri="http://www.flaticon.es/autores/eucalyp" Content="Eucalyp"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"> desde </TextBlock>
+                    <HyperlinkButton Margin="5" NavigateUri="http://www.flaticon.com" Content="www.flaticon.com"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center"> con licencia </TextBlock>
+                    <HyperlinkButton Margin="5" NavigateUri="http://creativecommons.org/licenses/by/3.0/" Content="Creative Commons BY 3.0"/>
+                </StackPanel>
             </StackPanel>
 
         </Grid>
