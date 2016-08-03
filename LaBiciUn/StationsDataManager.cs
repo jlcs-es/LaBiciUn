@@ -5,26 +5,131 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Json;
+using Windows.Devices.Geolocation;
 using Windows.UI.Xaml.Data;
 using Windows.Web.Http;
 
 namespace LaBiciUn
 {
 
+    public class Ciudad
+    {
+        public string Tag { get; set; }
+        public string Nombre { get; set; }
+        public Geopoint Centro { get; set; }
+    }
+
+
     public class StationsDataManager
     {
-        public static string data { get; set; } = "Hola";
+        private static string city;
+        public static string City
+        {
+            get
+            {
+                return city;
+            }
+
+            set
+            {
+                city = value; 
+                Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                localSettings.Values["city"] = value;
+            }
+        }
+
+        public static string remoteJsonData { get; set; } = "{\"status\":1,\"msg\":\"No connection\",\"data\":[]}";
         /// https://msdn.microsoft.com/en-us/windows/uwp/app-settings/store-and-retrieve-app-data
+        /// 
+
+        public static RootObject parsedJson { get; set; }
+
+
+        public static Dictionary<string, Ciudad> ciudades = new Dictionary<string, Ciudad>()
+        {
+            { "MU", new Ciudad { Tag="MU", Nombre="Murcia", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 37.991985,
+                    Longitude = -1.129554
+                }) }
+            },
+
+            { "PO", new Ciudad { Tag="PO", Nombre="Ponferrada", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 42.5475641,
+                    Longitude = -6.600071
+                }) }
+            },
+
+            { "BE", new Ciudad { Tag="BE", Nombre="Benidorm", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 38.5392324,
+                    Longitude = -0.1293277
+                }) }
+            },
+
+            { "AL", new Ciudad { Tag="AL", Nombre="Altea", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 38.602354,
+                    Longitude = -0.0474582
+                }) }
+            },
+
+            { "MA", new Ciudad { Tag="MA", Nombre="Majadahonda", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 40.4666036,
+                    Longitude = -3.8673309
+                }) }
+            },
+
+            { "GA", new Ciudad { Tag="GA", Nombre="Gandía", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 38.9696481,
+                    Longitude = -0.180044
+                }) }
+            },
+
+            { "GE", new Ciudad { Tag="GE", Nombre="Getafe", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 40.3101097,
+                    Longitude = -3.7332323
+                }) }
+            },
+
+            { "VI", new Ciudad { Tag="VI", Nombre="Vilagarcía de Arousa", Centro=new Geopoint(new BasicGeoposition()
+                {
+                    Latitude = 42.5962671,
+                    Longitude = -8.7674612
+                }) }
+            }
+
+        };
+
+
 
         public async static Task GetData()
         {
-            HttpClient http = new HttpClient();
-            Uri requestUri = new Uri("http://labici.net/api-labici.php?module=parking&method=get-locations&city=MU");
-            var response = await http.GetAsync(requestUri);
-            var result = await response.Content.ReadAsStringAsync();
-            ///TODO: manejar errores
 
-            data = result;
+            try
+            {
+                HttpClient http = new HttpClient();
+                Uri requestUri = new Uri("http://labici.net/api-labici.php?module=parking&method=get-locations&city="+City);
+
+
+                var response = await http.GetAsync(requestUri);
+                var result = await response.Content.ReadAsStringAsync();
+
+                remoteJsonData = result;
+            }
+            catch (Exception)
+            {
+
+                CustomNotifications.displayInfoDialog("Error de conexión", "No se pudo descargar los datos de las estaciones.\nCompruebe su conexión a Internet y pruebe a recargar o cambiar de página para ver los cambios.");
+            }
+            finally
+            {
+                parsedJson = new RootObject(remoteJsonData);
+            }
 
         }
 
@@ -42,10 +147,11 @@ namespace LaBiciUn
         public string xocupados { get; set; }
         public double latitude { get; set; }
         public double longitude { get; set; }
-        public string eshabilitada { get; set; }
-        public string xactivo { get; set; }
+        public bool eshabilitada { get; set; }
+        public bool xactivo { get; set; }
         public int libres { get; set; }
         public string ocupados { get; set; }
+        public Geopoint posicion { get; set; }
 
         private const string id_aparcamientoKey = "id_aparcamiento";
         private const string descripcionKey = "descripcion";
@@ -71,10 +177,16 @@ namespace LaBiciUn
             xocupados = jo.GetNamedString(xocupadosKey, "");
             latitude = jo.GetNamedNumber(latitudeKey, 0.0);
             longitude = jo.GetNamedNumber(longitudeKey, 0.0);
-            eshabilitada = jo.GetNamedString(eshabilitadaKey, "");
-            xactivo = jo.GetNamedString(xactivoKey, "");
+            eshabilitada = jo.GetNamedString(eshabilitadaKey, "") == "0" ? false : true;
+            xactivo = jo.GetNamedString(xactivoKey, "") == "0" ? false : true;
             libres = Convert.ToInt32(jo.GetNamedNumber(libresKey, 0));
             ocupados = jo.GetNamedString(ocupadosKey, "");
+
+            posicion = new Geopoint(new BasicGeoposition()
+            {
+                Latitude = latitude,
+                Longitude = longitude
+            });
         }
 
         

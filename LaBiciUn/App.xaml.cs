@@ -7,6 +7,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -44,10 +45,36 @@ namespace LaBiciUn
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
-                this.DebugSettings.EnableFrameRateCounter = true;
+                //this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
 
+            //////////////////////////////////////////
+
+
+            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+            StationsDataManager.City = (String)localSettings.Values["city"] ?? "MU";
+
+
+
+            var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
+            titleBar.ForegroundColor = Colors.WhiteSmoke;
+            titleBar.ButtonBackgroundColor = Color.FromArgb(255, 238, 50, 51);
+            titleBar.ButtonForegroundColor = Colors.White;
+            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(255, 238, 30, 31);
+
+
+            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+            {
+                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                statusBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
+                statusBar.BackgroundOpacity = 1;
+                statusBar.ForegroundColor = Colors.White;
+            }
+
+
+            //////////////////////////////////////////
 
             Frame rootFrame = Window.Current.Content as Frame;
 
@@ -105,6 +132,8 @@ namespace LaBiciUn
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+
         }
 
         /// <summary>
@@ -152,8 +181,8 @@ namespace LaBiciUn
                 e.Handled = true;
                 rootFrame.GoBack();
             }
-        }
 
+        }
 
     }
 }

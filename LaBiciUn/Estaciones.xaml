@@ -1,0 +1,55 @@
+﻿<Page
+    x:Class="LaBiciUn.Estaciones"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LaBiciUn"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+        <!--<TextBlock x:Name="textoJsonParsed" DataContext="{Binding ElementName=_this}" Text="{Binding Path=ro}" />-->
+        <ListView ItemsSource="{x:Bind ListaEstaciones}">
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="local:Datum">
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,5,15">
+                            <!--<TextBlock Text="&#xE759;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                            <TextBlock Text="{x:Bind descripcion}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="15,0">
+                            <TextBlock Text="&#x1F6B2;" FontFamily="Segoe UI Symbol" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind ocupados}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                            <TextBlock Text="bicicletas" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="15,0">
+                            <TextBlock Text="&#xE148;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <TextBlock Text="{x:Bind libres}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                            <TextBlock Text="plazas libres" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,15,0,0" BorderThickness="0,0,0,1" BorderBrush="DarkGray" Height="1"/>
+
+                    </Grid>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>

@@ -1,49 +1,38 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
-<Package
-  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
-  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
-
-  <Identity
-    Name="c0f3db9c-7868-46f5-bcc9-ffa6fcd6460a"
-    Publisher="CN=JoseLuis"
-    Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="c0f3db9c-7868-46f5-bcc9-ffa6fcd6460a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+<Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
+  <Identity Name="c0f3db9c-7868-46f5-bcc9-ffa6fcd6460a" Publisher="CN=JoseLuis" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="c0f3db9c-7868-46f5-bcc9-ffa6fcd6460a" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>LaBiciUn</DisplayName>
-    <PublisherDisplayName>JoseLuis</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <DisplayName>La Bici</DisplayName>
+    <PublisherDisplayName>Giuseppe Luigi</PublisherDisplayName>
+    <Logo>Assets\Logo\NewStoreLogo.png</Logo>
   </Properties>
-
   <Dependencies>
     <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.0.0" MaxVersionTested="10.0.0.0" />
   </Dependencies>
-
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-      Executable="$targetnametoken$.exe"
-      EntryPoint="LaBiciUn.App">
-      <uap:VisualElements
-        DisplayName="LaBiciUn"
-        Square150x150Logo="Assets\Square150x150Logo.png"
-        Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="LaBiciUn"
-        BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="LaBiciUn.App">
+      <uap:VisualElements DisplayName="La Bici" Square150x150Logo="Assets\Logo\Square150x150Logo.png" Square44x44Logo="Assets\Logo\Square44x44Logo.png" Description="App no oficial del servicio La Bici que gestiona las estaciones de bicicleta pública de: MuyBici, Ponfemobi, biciDORM, BiciAltea, Majadahonda en bici, SaforBici, Gbici, Vaibike" BackgroundColor="beige">
+        <uap:DefaultTile Wide310x150Logo="Assets\Logo\Wide310x150Logo.png" Square310x310Logo="Assets\Logo\Square310x310Logo.png" Square71x71Logo="Assets\Logo\Square71x71Logo.png" ShortName="La Bici">
+          <uap:ShowNameOnTiles>
+            <uap:ShowOn Tile="wide310x150Logo" />
+            <uap:ShowOn Tile="square310x310Logo" />
+          </uap:ShowNameOnTiles>
+        </uap:DefaultTile>
+        <uap:SplashScreen Image="Assets\Logo\SplashScreen.png" BackgroundColor="beige" />
+        <uap:InitialRotationPreference>
+          <uap:Rotation Preference="portrait" />
+          <uap:Rotation Preference="landscape" />
+          <uap:Rotation Preference="portraitFlipped" />
+        </uap:InitialRotationPreference>
       </uap:VisualElements>
     </Application>
   </Applications>
-
   <Capabilities>
     <Capability Name="internetClient" />
+    <DeviceCapability Name="location" />
   </Capabilities>
 </Package>

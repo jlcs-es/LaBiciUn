@@ -1,0 +1,25 @@
+﻿<Page
+    x:Class="LaBiciUn.Configuracion"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LaBiciUn"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,30,0,0">
+            <TextBlock Margin="0,0,20,0" VerticalAlignment="Center">Ciudad:</TextBlock>
+            <ComboBox x:Name="cityComboBox" SelectionChanged="cityComboBox_SelectionChanged" Width="150">
+                <ComboBoxItem Tag="MU">Murcia - MuyBici</ComboBoxItem>
+                <ComboBoxItem Tag="PO">Ponferrada - Ponfemobi</ComboBoxItem>
+                <ComboBoxItem Tag="BE">Benidorm - biciDORM</ComboBoxItem>
+                <ComboBoxItem Tag="AL">Altea - BiciAltea</ComboBoxItem>
+                <ComboBoxItem Tag="MA">Majadahonda - Majadahonda en bici</ComboBoxItem>
+                <ComboBoxItem Tag="GA">Gandía - SaforBici</ComboBoxItem>
+                <ComboBoxItem Tag="GE">Getafe - Gbici</ComboBoxItem>
+                <ComboBoxItem Tag="VI">Vilagarcía de Arousa - Vaibike</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+    </Grid>
+</Page>

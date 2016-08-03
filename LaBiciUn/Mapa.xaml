@@ -1,0 +1,86 @@
+﻿<Page
+    x:Class="LaBiciUn.Mapa"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:LaBiciUn"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    xmlns:maps="using:Windows.UI.Xaml.Controls.Maps"
+    >
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <maps:MapControl x:Name="myMap" 
+                         MapServiceToken="DbJuMpp4NoovKqoAg1Bv~6mt1_EXfoqmGL-tNiYUosQ~Avvnpr-GL-41q2wYqKF0DxJMI1nO4POfVbK6LlsSGtVJn9kEJoXNCyw5tgwHBLHl"
+                         PedestrianFeaturesVisible="True"
+                         RotateInteractionMode="GestureAndControl"
+                         TiltInteractionMode="GestureAndControl"
+                         ZoomInteractionMode="GestureAndControl"
+                         
+                         >
+            <maps:MapItemsControl ItemsSource="{x:Bind ListaEstaciones}">
+                <maps:MapItemsControl.ItemTemplate>
+                    <DataTemplate x:DataType="local:Datum">
+                        <Button Margin="-18,-36,0,0"
+                                Padding="0"
+                                maps:MapControl.Location="{x:Bind posicion}"
+                                Foreground="#EE3233" Background="Transparent" BorderThickness="0"
+                                Content="&#xEB4A;" FontSize="30"
+                                Height="36" Width="36"
+                                FontFamily="Segoe MDL2 Assets">
+                            <Button.Flyout>
+                                <Flyout>
+                                    <Grid>
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,5,15">
+                                            <!--<TextBlock Text="&#xE759;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
+                                            <TextBlock Text="{x:Bind descripcion}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="15,0">
+                                            <TextBlock Text="&#x1F6B2;" FontFamily="Segoe UI Symbol" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind ocupados}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Text="bicicletas" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="15,0">
+                                            <TextBlock Text="&#xE148;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="{x:Bind libres}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Text="plazas libres" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                                        </StackPanel>
+
+                                    </Grid>
+                                </Flyout>
+                            </Button.Flyout>
+                        </Button>
+                    </DataTemplate>
+                </maps:MapItemsControl.ItemTemplate>
+            </maps:MapItemsControl>
+
+            <maps:MapItemsControl>
+                <TextBlock x:Name="posicion" FontFamily="Segoe MDL2 Assets" Text="&#xE1D2;" Visibility="Collapsed"/>
+            </maps:MapItemsControl>
+            
+        </maps:MapControl>
+        
+        
+        <Button x:Name="LocationButton" FontFamily="Segoe MDL2 Assets" Content="&#xE1D2;"
+                    Height="50" Width="50" FontSize="25"  BorderThickness="0" Padding="0" Margin="0"
+                    Background="#7FF9EFEF" Foreground="#EE3233" 
+                    HorizontalAlignment="Right" VerticalAlignment="Top"
+                    Click="LocationButton_Click"/>
+
+    </Grid>
+
+
+
+
+</Page>

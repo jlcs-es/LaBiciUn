@@ -7,12 +7,90 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <ScrollViewer Margin="51,33,0,0" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="Auto" Width="Auto" HorizontalScrollMode="Enabled" HorizontalScrollBarVisibility="Auto">
-            <TextBlock x:Name="JSONtext" TextWrapping="Wrap"  Text=""
-                       Height="Auto" Width="Auto" MinWidth="500" MinHeight="500"/>
-        </ScrollViewer>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Bottom" Click="button_Click" Margin="0"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
+
+
+        <Grid x:Name="TitleAndIconsBar" Grid.Row="0" Background="#EE3233" Padding="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="HamburgerButton" Grid.Column="0" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+                    Height="50" Width="50" BorderThickness="0" Padding="0" Margin="0"
+                    Background="#EE5253" Foreground="White" Click="HamburgerButton_Click" />
+            <TextBlock x:Name="TitleTopBar" Grid.Column="1" Text="La Bici" 
+                    FontSize="18" Foreground="White" FontWeight="Bold"
+                    Margin="15,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center" />
+            <TextBlock x:Name="SubtitleTopBar" Grid.Column="2" FontSize="15" Foreground="White" FontWeight="Normal" 
+                       Margin="15,0,5,0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="SyncButton" Grid.Column="4" FontFamily="Segoe MDL2 Assets" Content="&#xE895;"
+                    Height="50" Width="50" BorderThickness="0" Padding="0" Margin="0"
+                    Background="#EE3233" Foreground="White" Click="SyncButton_Click"/>
+            <ProgressRing x:Name="LoadingRing" Grid.Column="4" IsActive="True"
+                          Padding="0" Margin="0,0,10,0" 
+                          Foreground="White" Visibility="Collapsed"/>
+        </Grid>
+
+
+
+        <SplitView x:Name="MenuSplitView" Grid.Row="1"
+                   OpenPaneLength="270">
+            <SplitView.Pane>
+                
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <RadioButton Grid.Row="0" GroupName="NavButtons"
+                                 Style="{StaticResource NavRadioButtonStyle}" 
+                                 Content="Mapa" Tag="&#xE826;" Click="MapaButton_Click"/>
+                    
+                    <RadioButton Grid.Row="1" GroupName="NavButtons" 
+                                 Style="{StaticResource NavRadioButtonStyleSegoeUI}" 
+                                 Content="Estaciones" Tag="&#x1F6B4;" Click="EstacionesButton_Click"/>
+                    
+                    <Border Grid.Row="3" BorderThickness="0,1,0,0" BorderBrush="DarkGray" Height="1"/>
+                    
+                    <RadioButton Grid.Row="4" GroupName="NavButtons" 
+                                 Style="{StaticResource NavRadioButtonStyle}" 
+                                 Content="Acerda de" Tag="&#xE946;" Click="AcercadeButton_Click"/>
+                    <RadioButton Grid.Row="5" GroupName="NavButtons" 
+                                 Style="{StaticResource NavRadioButtonStyle}" 
+                                 Content="Configuración" Tag="&#xE713;" Click="ConfiguracionButton_Click"/>
+                    
+                    <!--<Border Grid.Row="6" BorderThickness="0,0,0,1" BorderBrush="DarkGray" Height="5"/>-->
+
+                </Grid>
+                    
+            </SplitView.Pane>
+
+
+
+            <SplitView.Content>
+
+
+                <Frame x:Name="ContenidoFrame" />
+
+            </SplitView.Content>
+        </SplitView>
+        
+        
+        
     </Grid>
+
 </Page>
