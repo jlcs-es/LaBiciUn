@@ -6,7 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.Data.Json;
 using Windows.Devices.Geolocation;
+using Windows.UI;
 using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Media;
 using Windows.Web.Http;
 
 namespace LaBiciUn
@@ -43,6 +45,9 @@ namespace LaBiciUn
         /// 
 
         public static RootObject parsedJson { get; set; }
+
+
+        public static event EventHandler updatedData;
 
 
         public static Dictionary<string, Ciudad> ciudades = new Dictionary<string, Ciudad>()
@@ -124,11 +129,12 @@ namespace LaBiciUn
             catch (Exception)
             {
 
-                CustomNotifications.displayInfoDialog("Error de conexión", "No se pudo descargar los datos de las estaciones.\nCompruebe su conexión a Internet y pruebe a recargar o cambiar de página para ver los cambios.");
+                CustomNotifications.displayInfoDialog("Error de conexión", "No se pudo descargar los datos de las estaciones.\nCompruebe su conexión a Internet.");
             }
             finally
             {
                 parsedJson = new RootObject(remoteJsonData);
+                updatedData?.Invoke(null, null);
             }
 
         }
@@ -152,6 +158,7 @@ namespace LaBiciUn
         public int libres { get; set; }
         public string ocupados { get; set; }
         public Geopoint posicion { get; set; }
+        public SolidColorBrush mapPointColor { get; set; }
 
         private const string id_aparcamientoKey = "id_aparcamiento";
         private const string descripcionKey = "descripcion";
@@ -180,13 +187,20 @@ namespace LaBiciUn
             eshabilitada = jo.GetNamedString(eshabilitadaKey, "") == "0" ? false : true;
             xactivo = jo.GetNamedString(xactivoKey, "") == "0" ? false : true;
             libres = Convert.ToInt32(jo.GetNamedNumber(libresKey, 0));
-            ocupados = jo.GetNamedString(ocupadosKey, "");
+            ocupados = jo.GetNamedString(ocupadosKey, "0");
 
             posicion = new Geopoint(new BasicGeoposition()
             {
                 Latitude = latitude,
                 Longitude = longitude
             });
+
+            mapPointColor = new SolidColorBrush(Color.FromArgb(255, 238, 50, 51));
+            if(ocupados == "0" || !xactivo)
+            {
+                mapPointColor = new SolidColorBrush(Color.FromArgb(255, 00, 00, 00));
+            }
+
         }
 
         
@@ -256,5 +270,6 @@ namespace LaBiciUn
 
 
     }
+
 
 }

@@ -12,7 +12,7 @@
 
 
         <!--<TextBlock x:Name="textoJsonParsed" DataContext="{Binding ElementName=_this}" Text="{Binding Path=ro}" />-->
-        <ListView ItemsSource="{x:Bind ListaEstaciones}">
+        <ListView ItemsSource="{x:Bind ListaEstaciones, Mode=OneWay}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Datum">
 
@@ -30,17 +30,17 @@
 
                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,5,15">
                             <!--<TextBlock Text="&#xE759;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                            <TextBlock Text="{x:Bind descripcion}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
+                            <TextBlock Text="{x:Bind descripcion, Mode=OneWay}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
                         </StackPanel>
 
                         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="15,0">
                             <TextBlock Text="&#x1F6B2;" FontFamily="Segoe UI Symbol" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind ocupados}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                            <TextBlock Text="{x:Bind ocupados, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
                             <TextBlock Text="bicicletas" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="15,0">
                             <TextBlock Text="&#xE148;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                            <TextBlock Text="{x:Bind libres}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                            <TextBlock Text="{x:Bind libres, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
                             <TextBlock Text="plazas libres" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                         </StackPanel>
                         <Border Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,15,0,0" BorderThickness="0,0,0,1" BorderBrush="DarkGray" Height="1"/>

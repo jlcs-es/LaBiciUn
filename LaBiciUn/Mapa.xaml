@@ -18,13 +18,13 @@
                          ZoomInteractionMode="GestureAndControl"
                          
                          >
-            <maps:MapItemsControl ItemsSource="{x:Bind ListaEstaciones}">
+            <maps:MapItemsControl ItemsSource="{x:Bind ListaEstaciones, Mode=OneWay}">
                 <maps:MapItemsControl.ItemTemplate>
                     <DataTemplate x:DataType="local:Datum">
                         <Button Margin="-18,-36,0,0"
                                 Padding="0"
-                                maps:MapControl.Location="{x:Bind posicion}"
-                                Foreground="#EE3233" Background="Transparent" BorderThickness="0"
+                                maps:MapControl.Location="{x:Bind posicion, Mode=OneWay}"
+                                Foreground="{x:Bind mapPointColor, Mode=OneWay}" Background="Transparent" BorderThickness="0"
                                 Content="&#xEB4A;" FontSize="30"
                                 Height="36" Width="36"
                                 FontFamily="Segoe MDL2 Assets">
@@ -43,17 +43,17 @@
 
                                         <StackPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,5,5,15">
                                             <!--<TextBlock Text="&#xE759;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>-->
-                                            <TextBlock Text="{x:Bind descripcion}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
+                                            <TextBlock Text="{x:Bind descripcion, Mode=OneWay}" FontSize="20" HorizontalAlignment="Left" Margin="15,0"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="15,0">
                                             <TextBlock Text="&#x1F6B2;" FontFamily="Segoe UI Symbol" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="{x:Bind ocupados}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Text="{x:Bind ocupados, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
                                             <TextBlock Text="bicicletas" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                         </StackPanel>
                                         <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" Margin="15,0">
                                             <TextBlock Text="&#xE148;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                                            <TextBlock Text="{x:Bind libres}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
+                                            <TextBlock Text="{x:Bind libres, Mode=OneWay}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="5,0"/>
                                             <TextBlock Text="plazas libres" HorizontalAlignment="Left" VerticalAlignment="Center"/>
                                         </StackPanel>
 

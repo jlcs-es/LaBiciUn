@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -31,7 +32,14 @@ namespace LaBiciUn
         public Estaciones()
         {
             this.InitializeComponent();
-            //NavigationCacheMode = NavigationCacheMode.Required;
+            NavigationCacheMode = NavigationCacheMode.Required;
+            StationsDataManager.updatedData += updateBindings;
+        }
+
+        private void updateBindings(object sender, EventArgs e)
+        {
+            //Debug.WriteLine("Actualizando información visual");
+            this.Bindings.Update();
         }
 
 

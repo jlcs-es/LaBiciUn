@@ -39,12 +39,25 @@ namespace LaBiciUn
         public Mapa()
         {
             this.InitializeComponent();
-            //NavigationCacheMode = NavigationCacheMode.Required;
-            // center on Plaza Circular    
+            NavigationCacheMode = NavigationCacheMode.Required;
+
+            centrarMapa();
+
+            StationsDataManager.updatedData += updateBindings;
+            
+        }
+
+        private void centrarMapa()
+        {
             center = StationsDataManager.ciudades[StationsDataManager.City].Centro;
             myMap.Center = center;
             myMap.ZoomLevel = 15;
-            
+        }
+
+        private void updateBindings(object sender, EventArgs e)
+        {
+            //Debug.WriteLine("Actualizando información visual");
+            this.Bindings.Update();
         }
 
         private async void LocationButton_Click(object sender, RoutedEventArgs e)
@@ -65,7 +78,7 @@ namespace LaBiciUn
                 await myMap.TrySetViewAsync(center, 15);
                 MapControl.SetLocation(posicion, center);
                 posicion.Visibility = Visibility.Visible;
-            }            
+            }
 
         }
     }
