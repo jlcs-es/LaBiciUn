@@ -48,34 +48,9 @@ namespace LaBiciUn
                 //this.DebugSettings.EnableFrameRateCounter = true;
             }
 #endif
-
-            //////////////////////////////////////////
-
-
-            Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
-            StationsDataManager.City = (String)localSettings.Values["city"] ?? "MU";
-
-
-
-            var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
-            titleBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
-            titleBar.ForegroundColor = Colors.WhiteSmoke;
-            titleBar.ButtonBackgroundColor = Color.FromArgb(255, 238, 50, 51);
-            titleBar.ButtonForegroundColor = Colors.White;
-            titleBar.ButtonHoverBackgroundColor = Color.FromArgb(255, 238, 30, 31);
-
-
-            if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
-                statusBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
-                statusBar.BackgroundOpacity = 1;
-                statusBar.ForegroundColor = Colors.White;
-            }
-
-
-            //////////////////////////////////////////
-
+            if (e.PrelaunchActivated)
+                return;
+            
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -122,6 +97,36 @@ namespace LaBiciUn
 
             if (e.PrelaunchActivated == false)
             {
+
+
+                //////////////////////////////////////////
+
+
+                Windows.Storage.ApplicationDataContainer localSettings = Windows.Storage.ApplicationData.Current.LocalSettings;
+                StationsDataManager.City = (String)localSettings.Values["city"] ?? "MU";
+
+
+
+                var titleBar = Windows.UI.ViewManagement.ApplicationView.GetForCurrentView().TitleBar;
+                titleBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
+                titleBar.ForegroundColor = Colors.WhiteSmoke;
+                titleBar.ButtonBackgroundColor = Color.FromArgb(255, 238, 50, 51);
+                titleBar.ButtonForegroundColor = Colors.White;
+                titleBar.ButtonHoverBackgroundColor = Color.FromArgb(255, 238, 30, 31);
+
+
+                if (Windows.Foundation.Metadata.ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
+                {
+                    var statusBar = Windows.UI.ViewManagement.StatusBar.GetForCurrentView();
+                    statusBar.BackgroundColor = Color.FromArgb(255, 238, 50, 51);
+                    statusBar.BackgroundOpacity = 1;
+                    statusBar.ForegroundColor = Colors.White;
+                }
+
+
+                //////////////////////////////////////////
+
+
                 if (rootFrame.Content == null)
                 {
                     // When the navigation stack isn't restored navigate to the first page,
@@ -129,6 +134,11 @@ namespace LaBiciUn
                     // parameter
                     rootFrame.Navigate(typeof(MainPage), e.Arguments);
                 }
+
+
+
+
+
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
