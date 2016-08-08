@@ -15,6 +15,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <HyperlinkButton Grid.Row="0" x:Name="textBox" HorizontalAlignment="Center" Content="Aplicación Universal de LaBici.net" VerticalAlignment="Center" FontSize="22" Foreground="Black" NavigateUri="http://labici.net"/>
             <TextBlock Grid.Row="1" x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap"
@@ -55,6 +56,15 @@
                     <HyperlinkButton Margin="5" NavigateUri="http://creativecommons.org/licenses/by/3.0/" Content="Creative Commons BY 3.0"/>
                 </StackPanel>
             </StackPanel>
+
+            <Grid Grid.Row="5" Margin="10,20" HorizontalAlignment="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" FontSize="18" TextWrapping="Wrap">Política de privacidad</TextBlock>
+                <TextBlock Grid.Row="1" FontSize="15" TextWrapping="Wrap">No se almacena ni comparte ningún dato del usuario, ni personal, ni localización.</TextBlock>
+            </Grid>
 
         </Grid>
     </ScrollViewer>
